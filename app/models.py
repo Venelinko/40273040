@@ -13,6 +13,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     articles = db.relationship('Article', backref='author', lazy='dynamic')
+    logs = db.relationship('Log', backref='logauthor', lazy='dynamic')
 
     def __repr__(self):
         return 'User {}'.format(self.username)
@@ -31,3 +32,13 @@ class Article(db.Model):
 
     def __repr__(self):
         return 'Article {}'.format(self.body)
+
+class Log(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    destination = db.Column(db.String(64))
+    difficulty = db.Column(db.String(5))
+    body = db.Column(db.String(240))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return 'User: {}, Log: {}'.format(self.logauthor, self.body)

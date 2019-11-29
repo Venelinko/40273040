@@ -69,3 +69,17 @@ def user(username):
         { 'author': user , 'body': 'Post numbr 2'}
     ]
     return render_template('user.html', user=user, articles=atricles)
+
+@main.route('/logbook')
+@login_required
+def logbook():
+    logs = [
+        { 'author': user, 'body': 'Big climb' },
+        { 'author': user, 'body': 'Smaller climb' }
+    ]
+    return render_template('logbook.html', logs=logs)
+
+@main.route('/newlog')
+@login_required
+def newlog():
+    return render_template('newlog.html', title='New log')
