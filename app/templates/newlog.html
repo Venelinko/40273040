@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>New Log</h1>
+<form action="" method="POST" >
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.destination.label }}<br>
+        {{ form.destination(size=20) }}<br>
+        {% for error in form.destination.errors %}
+        <span style="color: red">{{ error }}</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.difficulty.label }}<br>
+        {{ form.difficulty(size=20) }}<br>
+        {% for error in form.difficulty.errors %}
+        <span style="color: red">{{ error }}</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.body.label }}<br>
+        {{ form.body(size=20) }}<br>
+        {% for error in form.body.errors %}
+        <span style="color: red">{{ error }}</span>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+{% endblock %}

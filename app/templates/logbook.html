@@ -4,8 +4,8 @@
 <h1>Logbook</h1>
 {% for log in logs %}
     <p>
-        {{ log.author.username }} {{ log.body  }}
+        {{ log.logauthor.username }} {{ log.body  }}
     </p>
 {% endfor %}
-<a>New Log</a>
+<a href="{{ url_for('newlog') }}">New Log</a>
 {% endblock %}

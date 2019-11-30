@@ -1,8 +1,8 @@
 from flask import render_template, flash, redirect, url_for, request
 from app import main, db
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, NewLogForm
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User
+from app.models import User, Log
 from werkzeug.urls import url_parse
 
 @main.route('/')
@@ -73,13 +73,18 @@ def user(username):
 @main.route('/logbook')
 @login_required
 def logbook():
-    logs = [
-        { 'author': user, 'body': 'Big climb' },
-        { 'author': user, 'body': 'Smaller climb' }
-    ]
+    logs = Log.query.all()
     return render_template('logbook.html', logs=logs)
 
-@main.route('/newlog')
+@main.route('/newlog', methods=['GET', 'POST'])
 @login_required
 def newlog():
-    return render_template('newlog.html', title='New log')
+    form = NewLogForm()
+    if form.validate_on_submit():
+        log = Log(destination=form.destination.data, difficulty=form.difficulty.data,
+        body=form.body.data, logauthor=current_user)
+        db.session.add(log)
+        db.session.commit()
+        flash('New log created.')
+        return redirect(url_for('logbook'))
+    return render_template('newlog.html', title='New log', form=form)
