@@ -7,7 +7,6 @@ from werkzeug.urls import url_parse
 
 @main.route('/')
 @main.route('/index')
-@login_required
 def index():
     articles = [
         {
