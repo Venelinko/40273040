@@ -70,8 +70,9 @@ def user(username):
     return render_template('user.html', user=user, articles=atricles)
 
 @main.route('/logbook')
-@login_required
 def logbook():
+    if current_user.is_anonymous:
+        return redirect(url_for('register'))
     logs = Log.query.all()
     return render_template('logbook.html', logs=logs)
 
