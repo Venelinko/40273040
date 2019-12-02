@@ -6,7 +6,7 @@
      z-index: 1; /* Stay on top */
      top: 70px; /* Stay at the top */
      left: 2px;
-     background-color: white; /* Black */
+     background-color: rgba(27, 202, 214, 0.336); /* Black */
      overflow-x: hidden; /* Disable horizontal scroll */
      padding-top: 20px;
   }

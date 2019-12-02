@@ -7,15 +7,13 @@
 
 {% block app_content %}
 <h1>Logbook</h1>
-<div class="row ml-4">
-    <div class="ml-4">
-        {% for log in logs %}
-            {% include '_log.html' %}
-        {% endfor %}
-    </div>
+        <div class="row">
+                {% for log in logs %}
+                    {% include '_log.html' %}
+                {% endfor %}
+            <div class="sidenav">
+                <p><a role="button" href="{{ url_for('newlog') }}">New Log</a></p>
+            </div>
+        </div>
 
-    <div class="sidenav">
-        <p><a class="btn btn-primary" role="button" href="{{ url_for('newlog') }}">New Log</a></p>
-    </div>
-</div>
 {% endblock %}
