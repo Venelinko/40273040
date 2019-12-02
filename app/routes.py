@@ -72,9 +72,10 @@ def user(username):
 @main.route('/logbook')
 def logbook():
     if current_user.is_anonymous:
-        return redirect(url_for('register'))
+        return redirect(url_for('login'))
+    user = current_user
     logs = Log.query.all()
-    return render_template('logbook.html', logs=logs)
+    return render_template('logbook.html', logs=logs, user=user)
 
 @main.route('/newlog', methods=['GET', 'POST'])
 @login_required
