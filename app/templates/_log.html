@@ -1,8 +1,13 @@
-<div class="card" style="margin-left: 15px;">
-    <div class="card-body">
-        <h2 class="card-title">{{ log.logauthor.username }}, Destination: {{ log.destination }}, 
-            Difficulty: {{ log.difficulty }}
-        </h2>
+
+<link rel="stylesheet" href="{{url_for('static', filename='css/logcard.css')}}">
+
+
+<div class="card" style="margin-left: 20px;">
+    <div class="container">
+        <h3 class="card-title"><a style="color: black" href="{{ url_for('user', username=log.logauthor.username) }}">
+            {{ log.logauthor.username }}</a>, Location: {{ log.destination }}
+        </h3>
+        <h3 class="difficulty">Difficulty: {{ log.difficulty }} </h3>
         <p class="card-text">
             {{ log.body }}
         </p>

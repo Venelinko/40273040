@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 from app.models import User
 
 class LoginForm(FlaskForm):
@@ -30,5 +30,10 @@ class RegistrationForm(FlaskForm):
 class NewLogForm(FlaskForm):
     destination = StringField('Destination', validators=[DataRequired()])
     difficulty = StringField('Difficulty', validators=[DataRequired()])
-    body = StringField('Description', validators=[DataRequired()])
+    body = TextAreaField('Description', validators=[DataRequired()])
     submit = SubmitField('Add')
+
+class EditProfileForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    about_me = TextAreaField('About me', validators=[Length(max=128)])
+    submit = SubmitField('Save')

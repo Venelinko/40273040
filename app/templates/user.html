@@ -3,9 +3,16 @@
 {% block app_content %}
     <h1>{{ user.username }}</h1>
     <hr>
-    {% for article in articles %}
+    {% if user.about_me %}
+        <p>{{ user.about_me }}</p>
+    {% endif %}
+
+    {% for log in logs %}
         <p>
-        {{ article.author.username }} says: {{ article.body }}
+        {{ log.logauthor.username }} says: {{ log.body }}
         </p>
     {% endfor %}
+    {% if user == current_user %}
+        <a class="btn btn-primary" href="{{ url_for('editprofile') }}">Edit Profile</a>
+    {% endif %}
 {% endblock %}
