@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-    <h1>New user, {{ current_user.username }}</h1>
+<h1>New user, {{ current_user.username }}</h1>
+<div class="row">
     {% for article in articles %}
-    <div>
-        <p>{{ article.author.username }} says: <b>{{ article.content }}</b></p>
-    </div>
-{% endfor %}
+    {% include "_article.html" %}
+    {% endfor %}
+</div>
 {% endblock %}

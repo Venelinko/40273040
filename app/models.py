@@ -13,7 +13,6 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     about_me = db.Column(db.String(128))
-    articles = db.relationship('Article', backref='author', lazy='dynamic')
     logs = db.relationship('Log', backref='logauthor', lazy='dynamic')
 
     def __repr__(self):
@@ -28,8 +27,9 @@ class User(UserMixin, db.Model):
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(1028))
+    short_body = db.Column(db.String(512))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    author = db.Column(db.String(50))
 
     def __repr__(self):
         return 'Article {}'.format(self.body)
@@ -39,6 +39,7 @@ class Log(db.Model):
     destination = db.Column(db.String(64))
     difficulty = db.Column(db.String(5))
     body = db.Column(db.String(240))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):

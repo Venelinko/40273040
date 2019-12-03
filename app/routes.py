@@ -4,14 +4,16 @@ from app.forms import LoginForm, RegistrationForm, NewLogForm, EditProfileForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Log
 from werkzeug.urls import url_parse
+from sqlalchemy import desc
 
 @main.route('/')
 @main.route('/index')
 def index():
     articles = [
         {
-            'author': {'username': 'Venelin'},
-            'content': "New content"
+            'author': "David",
+            'title': "Artiicle Title",
+            'body': "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras magna felis, ullamcorper at lobortis eu, congue non mi. "
         },
         {
             'author': {'username': 'Michael'},
@@ -71,7 +73,7 @@ def logbook():
     if current_user.is_anonymous:
         return redirect(url_for('login'))
     user = current_user
-    logs = Log.query.all()
+    logs = Log.query.order_by(desc(Log.timestamp)).all()
     return render_template('logbook.html', logs=logs, user=user)
 
 @main.route('/newlog', methods=['GET', 'POST'])
