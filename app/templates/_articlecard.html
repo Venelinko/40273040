@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="{{url_for('static', filename='css/articlecard.css')}}">
+
+<div class="card" style="margin-left: 20px;" onclick="location.href='/logbook';">
+    <div class="container">
+        <h3 class="card-title">{{ article.title }}</h3>
+        <p class="card-text">
+            {{ article.short_body }}
+        </p>
+        <p class="author">{{ article.author }}</p>
+        <p class="date">Date: {{ article.timestamp.strftime('%Y-%m-%d') }}</p>
+    </div>
+</div>
+<hr>

@@ -1,26 +1,29 @@
 from flask import render_template, flash, redirect, url_for, request
 from app import main, db
-from app.forms import LoginForm, RegistrationForm, NewLogForm, EditProfileForm
+from app.forms import LoginForm, RegistrationForm, NewLogForm, EditProfileForm, NewArticleForm
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User, Log
+from app.models import User, Log, Article
 from werkzeug.urls import url_parse
 from sqlalchemy import desc
 
 @main.route('/')
 @main.route('/index')
 def index():
-    articles = [
-        {
-            'author': "David",
-            'title': "Artiicle Title",
-            'body': "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras magna felis, ullamcorper at lobortis eu, congue non mi. "
-        },
-        {
-            'author': {'username': 'Michael'},
-            'content': 'Second post'
-        }
-    ]
+    articles = Article.query.all()
     return render_template('index.html', title='Home', articles=articles)
+
+@main.route('/newarticle', methods=['GET', 'POST'])
+def newarticle():
+    form = NewArticleForm()
+    if form.validate_on_submit():
+        article = Article(title=form.title.data, body=form.body.data, short_body=form.short_body.data,
+        author=form.author.data)
+        db.session.add(article)
+        db.session.commit()
+        flash('New article created.')
+        return redirect(url_for('index'))
+    return render_template('newarticle.html', title='New Article', form=form)
+
 
 @main.route('/login', methods=['GET', 'POST'])
 def login():

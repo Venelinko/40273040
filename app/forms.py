@@ -37,3 +37,10 @@ class EditProfileForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     about_me = TextAreaField('About me', validators=[Length(max=128)])
     submit = SubmitField('Save')
+
+class NewArticleForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired(), Length(max=50)])
+    short_body = TextAreaField('Short body', validators=[DataRequired()])
+    body = TextAreaField('Body', validators=[DataRequired()])
+    author = StringField('Author', validators=[DataRequired(), Length(max=50)])
+    submit = SubmitField('Add')

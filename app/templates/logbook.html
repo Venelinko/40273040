@@ -9,7 +9,7 @@
 <h1>Logbook</h1>
         <div class="row">
                 {% for log in logs %}
-                    {% include '_log.html' %}
+                    {% include '_logcard.html' %}
                 {% endfor %}
             <div class="sidenav">
                 <p><a role="button" href="{{ url_for('newlog') }}">New Log</a></p>

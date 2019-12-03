@@ -26,6 +26,7 @@ class User(UserMixin, db.Model):
 
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(50))
     body = db.Column(db.String(1028))
     short_body = db.Column(db.String(512))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
