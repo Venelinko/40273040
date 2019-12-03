@@ -24,6 +24,11 @@ def newarticle():
         return redirect(url_for('index'))
     return render_template('newarticle.html', title='New Article', form=form)
 
+@main.route('/article/<id>')
+def article(id):
+    article = Article.query.filter_by(id=id).first_or_404()
+    return render_template('article.html', article=article)
+
 
 @main.route('/login', methods=['GET', 'POST'])
 def login():

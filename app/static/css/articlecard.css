@@ -37,3 +37,9 @@
     margin: 20px 5px 20px 1000px;
     float: right;
   }
+  .readmore {
+    position: absolute;
+    float: left;
+    margin: 65px 20px 25px 1050px;
+    font-size: 110%;
+  }

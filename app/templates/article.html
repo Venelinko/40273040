@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+<div class="row">
+    <h1>{{ article.title }} <small>{{ article.timestamp.strftime('%Y-%m-%d') }}</small></h1>
+    <hr>
+    <div class="col-md-6">
+        <p>{{ article.short_body }}</p>
+        <p>{{ article.body }}</p>
+        <hr>
+        <p>Author: {{ article.author }}</p>
+
+    </div>
+    <div class="media">
+            <iframe width="605" height="340" src="https://www.youtube.com/embed/ktPMEyyjpHY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+</div>
+{% endblock %}
