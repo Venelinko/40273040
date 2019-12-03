@@ -43,4 +43,6 @@ class NewArticleForm(FlaskForm):
     short_body = TextAreaField('Short body', validators=[DataRequired()])
     body = TextAreaField('Body', validators=[DataRequired()])
     author = StringField('Author', validators=[DataRequired(), Length(max=50)])
+    video = StringField('Youtube video')
+    picture = TextAreaField('Instagram picture')
     submit = SubmitField('Add')

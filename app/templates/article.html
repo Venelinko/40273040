@@ -12,7 +12,12 @@
 
     </div>
     <div class="media">
-            <iframe width="605" height="340" src="https://www.youtube.com/embed/ktPMEyyjpHY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% if article.video %}
+            <iframe width="605" height="340" src="{{ article.video }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% endif %}
+        {% if article.picture %}
+            {{ article.picture }}
+        {% endif %}
     </div>
 
 </div>

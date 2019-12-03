@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 
 {% block app_content %}
+<div class="row">
     <h1>{{ user.username }}</h1>
     <hr>
-    {% if user.about_me %}
-        <p>{{ user.about_me }}</p>
-    {% endif %}
-
-    {% for log in logs %}
-        <p>
-        {{ log.logauthor.username }} says: {{ log.body }}
-        </p>
-    {% endfor %}
-    {% if user == current_user %}
+    <div class="col-md-5">
+        {% if user.about_me %}
+        <p>About me: {{ user.about_me }}</p>
+        {% endif %}
+        {% if user == current_user %}
         <a class="btn btn-primary" href="{{ url_for('editprofile') }}">Edit Profile</a>
-    {% endif %}
+        {% endif %}
+    </div>
+
+</div>
+
 {% endblock %}

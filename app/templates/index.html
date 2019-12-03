@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-<h1>New user, {{ current_user.username }}</h1>
 {% if current_user.username == "venelin" %}
 <p><a role="button" href="{{ url_for('newarticle') }}">New Article</a></p>
 {% endif %}
 <div class="row">
+    <h1>News and articles</h1>
+    <hr>
     {% for article in articles %}
     {% include "_articlecard.html" %}
     {% endfor %}

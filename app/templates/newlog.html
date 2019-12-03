@@ -2,8 +2,10 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
-<h1>New Log</h1>
+
 <div class="row">
+        <h1>New Log</h1>
+        <hr>
         <div class="col-md-4">
                 {{ wtf.quick_form(form) }}
         </div>

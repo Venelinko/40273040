@@ -30,6 +30,8 @@ class Article(db.Model):
     body = db.Column(db.String(1028))
     short_body = db.Column(db.String(512))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    video = db.Column(db.String())
+    picture = db.Column(db.Text(4294000000))
     author = db.Column(db.String(50))
 
     def __repr__(self):
